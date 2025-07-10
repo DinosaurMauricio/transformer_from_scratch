@@ -119,6 +119,7 @@ def run_validation(
 
 def get_all_sentences(ds, lang):
     for item in ds:
+        # A generator function uses yield and instead of running all the way through at once, it pauses at each yield and waits for you to ask for the next value.
         yield item["translation"][lang]
 
 
@@ -147,6 +148,7 @@ def get_ds(config):
     tokenizer_tgt = get_or_build_tokenizer(config, ds_raw, config["lang_tgt"])
 
     train_ds_size = int(0.9 * len(ds_raw))
+    # HERE MODIFY SO WE USE LESS DATA
     val_ds_size = len(ds_raw) - train_ds_size
     train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size])
 

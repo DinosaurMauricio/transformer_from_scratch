@@ -101,5 +101,7 @@ class BilingualDataset(Dataset):
 
 
 def causal_mask(size):
+    # Creates a mask that allows each position to attend only to itself and previous positions,
+    # preventing the model from looking ahead at future tokens during training.
     mask = torch.triu(torch.ones(1, size, size), diagonal=1).type(torch.int)
     return mask == 0

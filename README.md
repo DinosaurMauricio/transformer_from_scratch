@@ -45,13 +45,13 @@ Where:
 This operation lets the model calculate a weighted representation of the input, where the weights reflect how much focus each word should place on the others.
 
 
-### Multi-Head?
+### Multi-Head
 
 Instead of computing one single attention representation, **multi-head attention** allows the model to look at different parts of the sequence from different representation subspaces. Each "head" learns a different aspect of the attention, and the results are concatenated and linearly transformed.
 
 This allows the model to capture more complex relationships within the input sequence.
 
-An amazing eplanation on this if found on this video: ![Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
+An amazing explanation on this is found on this video: ![Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
 
 ### Masking and Language Modeling
 

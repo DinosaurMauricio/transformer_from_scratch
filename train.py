@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 import wandb
 
@@ -20,7 +19,6 @@ def train_model(config):
     ).to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"], eps=1e-9)
-    writer = SummaryWriter("experiment_name")
 
     initial_epoch, global_step = 0, 0
     preload = config["preload"]
@@ -42,6 +40,8 @@ def train_model(config):
         ignore_index=tokenizer_src.token_to_id("[PAD]"), label_smoothing=0.1
     ).to(device)
 
+    total_loss = 0.0
+
     for epoch in range(initial_epoch, config["num_epochs"]):
         batch_iterator = tqdm(train_dataloader, desc=f"Epoch {epoch}")
         for batch in batch_iterator:
@@ -61,16 +61,15 @@ def train_model(config):
             loss = loss_fn(proj_output.view(-1, proj_output.size(-1)), label.view(-1))
             batch_iterator.set_postfix({"loss": f"{loss.item():6.3f}"})
 
-            # writer.add_scalar("train loss", loss.item(), global_step)
-            # writer.flush()
-
             loss.backward()
             optimizer.step()
             optimizer.zero_grad()
             global_step += 1
 
-            if config.log:
-                wandb.log({"loss": loss}, commit=False)
+            total_loss += loss.item()
+
+        if config.log:
+            wandb.log({"loss": total_loss / len(train_dataloader)})
 
         # run_validation(
         #    model,

@@ -1,22 +1,11 @@
+import os
 from pathlib import Path
+from omegaconf import OmegaConf
 
 
-def get_config():
-    return {
-        "batch_size": 8,
-        "num_epochs": 20,
-        "lr": 10**-4,
-        "seq_len": 350,
-        "d_model": 512,
-        "datasource": "opus_books",
-        "lang_src": "en",
-        "lang_tgt": "it",
-        "model_folder": "weights",
-        "model_basename": "tmodel_",
-        "preload": "latest",
-        "tokenizer_file": "tokenizer_{0}.json",
-        "experiment_name": "runs/tmodel",
-    }
+def load_config(project_path, config_path):
+    config_path = os.path.join(project_path, config_path)
+    return OmegaConf.load(config_path)
 
 
 def get_weights_file_path(config, epoch: str):

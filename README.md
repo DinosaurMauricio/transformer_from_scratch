@@ -8,7 +8,7 @@ Transformers are a type of neural network architecture that rely heavily on a me
 
 The Transformer architecture is composed of repeated blocks. The representations I like the most is this diagram from Wikipedia:
 
-![Transformer Architecture](https://upload.wikimedia.org/wikipedia/commons/1/10/Transformer%2C_full_architecture.png)
+[Transformer Architecture](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)#/media/File:Transformer,_full_architecture.png)
 
 ### Positional Encodings
 
@@ -51,7 +51,7 @@ Instead of computing one single attention representation, **multi-head attention
 
 This allows the model to capture more complex relationships within the input sequence.
 
-An amazing explanation on this is found on this video: ![Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
+An amazing explanation on this is found on this video: [Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
 
 ### Masking and Language Modeling
 

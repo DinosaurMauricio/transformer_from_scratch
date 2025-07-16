@@ -8,11 +8,11 @@ Transformers are a type of neural network architecture that rely heavily on a me
 
 The Transformer architecture is composed of repeated blocks. The representations I like the most is this diagram from Wikipedia:
 
-![Transformer Architecture](https://upload.wikimedia.org/wikipedia/commons/1/10/Transformer%2C_full_architecture.png)
+[Transformer Architecture](https://upload.wikimedia.org/wikipedia/commons/1/10/Transformer%2C_full_architecture.png)
 
 ### Positional Encodings
 
-One of the first key elements in the architecture is **positional encoding**. Unlike RNNs, which are autoregressive (the model ries to predict token i, based on what has already seen, meaning all the tokens before it  i-1), Transformers process all tokens **in parallel**. This makes them **permutation invariant**, meaning without additional info, the model wouldn't know the correct order of the words.
+One of the first key elements in the architecture is **positional encoding**. Unlike RNNs, which are autoregressive (the model ries to predict token i, based on what has already seen, meaning all the tokens before it  i-1), Transformers process all tokens in parallel. This makes them **permutation invariant**, meaning without additional info, the model wouldn't know the correct order of the words.
 
 
 
@@ -51,7 +51,7 @@ Instead of computing one single attention representation, **multi-head attention
 
 This allows the model to capture more complex relationships within the input sequence.
 
-An amazing explanation on this is found on this video: ![Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
+An amazing explanation on this is found on this video: [Visual Guide to Transformer Neural Networks](https://www.youtube.com/watch?v=mMa2PmYJlCo)
 
 ### Masking and Language Modeling
 
@@ -59,4 +59,4 @@ In decoder-based Transformers (like GPT), a **mask** is applied during training 
 
 This is called **causal masking**, and it's essential for language generation tasks.
 
-In contrast, **BERT** uses a different strategy called **Masked Language Modeling (MLM)**. It masks random tokens in the input and trains the model to predict them using **both** left and right context (i.e., bidirectional attention).
+In contrast, **BERT** uses a different strategy called **Masked Language Modeling (MLM)**. It masks random tokens in the input and trains the model to predict them using both left and right context (i.e., bidirectional attention).

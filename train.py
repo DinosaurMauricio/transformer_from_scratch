@@ -40,10 +40,9 @@ def train_model(config):
         ignore_index=tokenizer_src.token_to_id("[PAD]"), label_smoothing=0.1
     ).to(device)
 
-    total_loss = 0.0
-
     for epoch in range(initial_epoch, config["num_epochs"]):
         batch_iterator = tqdm(train_dataloader, desc=f"Epoch {epoch}")
+        total_loss = 0.0
         for batch in batch_iterator:
             model.train()
             encoder_input = batch["encoder_input"].to(device)
@@ -69,20 +68,18 @@ def train_model(config):
             total_loss += loss.item()
 
         if config.log:
-            wandb.log({"loss": total_loss / len(train_dataloader)})
+            wandb.log({"loss": total_loss / len(train_dataloader)}, commit=False)
 
-        # run_validation(
-        #    model,
-        #    val_dataloader,
-        #    tokenizer_src,
-        #    tokenizer_tgt,
-        #    config["seq_len"],
-        #    device,
-        #    lambda msg: batch_iterator.write(msg),
-        #    global_step,
-        #    config.log,
-        #    loss_fn,
-        # )
+        run_validation(
+            model,
+            val_dataloader,
+            tokenizer_src,
+            tokenizer_tgt,
+            config["seq_len"],
+            device,
+            loss_fn,
+            config.log,
+        )
 
         torch.save(
             {

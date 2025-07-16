@@ -3,8 +3,7 @@ from pathlib import Path
 from omegaconf import OmegaConf
 
 
-def load_config(project_path, config_path):
-    config_path = os.path.join(project_path, config_path)
+def load_config(config_path):
     return OmegaConf.load(config_path)
 
 
